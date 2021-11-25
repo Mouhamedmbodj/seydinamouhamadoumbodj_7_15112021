@@ -38,22 +38,23 @@ exports.getAllPosts=(req,res,next)=>{
 //modifier le post
 exports.modifyPost=(req,res,next)=>{
     const postId=req.params.id
-    
-    db.query('SELECT `file` FROM `posts` WHERE `posts`.`postId`=?' , [postId] , (error , results)=>{
-        if(error){
-            console.log(error)
-        }
-        if(results[0].file){
-            const result=results[0]
-            let deleteFile=result.file.split('/images/')[1];
-            if(fs.existsSync(`images/${deleteFile}`)){
-                fs.unlink(`images/${deleteFile}`,(err)=>{
-                if (err) throw err
-                });
+    if(req.body.file==null){
+        db.query('SELECT `file` FROM `posts` WHERE `posts`.`postId`=?' , [postId] , (error , results)=>{
+            if(error){
+               console.log(error)
             }
-        }
-    })
-
+            if(results[0].file){
+               const result=results[0]
+               let deleteFile=result.file.split('/images/')[1];
+               if(fs.existsSync(`images/${deleteFile}`)){
+                   fs.unlink(`images/${deleteFile}`,(err)=>{
+                   if (err) throw err
+                   });
+               }
+            }
+        })
+    }
+   
     const data={
        likes:0,
        dislikes:0,
@@ -61,6 +62,7 @@ exports.modifyPost=(req,res,next)=>{
        postDescription:req.body.description,
        file:req.body.file
     }  
+    console.log(req.body)
     
     db.query('UPDATE posts SET ? WHERE postId=?',[data,postId],(error , results)=>{
         if(error){

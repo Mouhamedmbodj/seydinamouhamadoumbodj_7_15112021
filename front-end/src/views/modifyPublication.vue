@@ -95,7 +95,7 @@ export default {
        if(getPostId!=this.paramsId){
             localStorage.removeItem('edit')
             this.$router.push('/login') 
-       }
+        }
     },
     async created(){
         let local=localStorage.getItem('response')
@@ -155,15 +155,13 @@ export default {
              const current = new Date();
              const date = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`
              Data.date=date
-
-            if(this.description != null || this.file == null){
-                if(this.file !=null){
+            if(this.description != null || this.file != null){
+                if(this.preview !=null){
                     const urlImage=`http://localhost:3000/api/upload/posts/${this.paramsId}`
                     axios.put(urlImage,formData,configUpload)
                     .then(res=>{
                         if(res){
                             Data.file=res.data
-                            console.log(Data)
                             axios.put(urlData,Data,config)
                             .then(res =>{ 
                                   alert(res.data.Message)

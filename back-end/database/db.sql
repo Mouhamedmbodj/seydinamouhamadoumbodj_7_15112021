@@ -3,23 +3,22 @@ CREATE DATABASE groupomania;
 USE groupomania;
 
 CREATE TABLE  users(
-   id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
 
-   nom VARCHAR(100) NOT NULL,
+  nom VARCHAR(100) NOT NULL,
 
-   prenom VARCHAR(100) NOT NULL,
+  prenom VARCHAR(100) NOT NULL,
 
-   email VARCHAR(255) NOT NULL ,
+  email VARCHAR(255) NOT NULL,
 
-   description TEXT,
+  description TEXT,
 
-   imageUrl TEXT
+  imageUrl TEXT
 );
 ALTER TABLE users AUTO_INCREMENT=1;
 ALTER TABLE users ADD COLUMN password TEXT NOT NULL;
 ALTER TABLE `users` ADD `status` INT NOT NULL DEFAULT '1' AFTER `password`;
 ALTER TABLE `users` ADD `fullName` VARCHAR(100) NOT NULL AFTER `prenom`;
-
 
 
 CREATE TABLE comments(
@@ -32,7 +31,6 @@ CREATE TABLE comments(
   postId INTEGER NOT NULL 
 );
 ALTER TABLE `comments` CHANGE `id` `commentId` INT NOT NULL AUTO_INCREMENT;
-
 
 
 CREATE TABLE posts(

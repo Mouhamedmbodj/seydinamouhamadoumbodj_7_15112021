@@ -1,5 +1,6 @@
 const db= require('../database/database');
 const fs=require('fs');
+const { Console } = require('console');
 
 //modifier la photo de profil
 exports.modifyProfil=(req,res,next)=>{
@@ -42,20 +43,22 @@ exports.savePostFile=(req,res,next)=>{
 //modifier l'image d'un post
 exports.modifyImagePost=(req,res,next)=>{
     const postId=req.params.id
-    db.query('SELECT `file` FROM `posts` WHERE `posts`.`postId`=?' , [postId] , (error , results)=>{
-        if(error){
-            console.log(error)
-        }
-        if(results[0].file){
-            const result=results[0]
-            let deleteFile=result.file.split('/images/')[1];
-            if(fs.existsSync(`images/${deleteFile}`)){
-                fs.unlink(`images/${deleteFile}`,(err)=>{
-                if (err) throw err
-                });
+    if(req.file){
+        db.query('SELECT `file` FROM `posts` WHERE `posts`.`postId`=?' , [postId] , (error , results)=>{
+            if(error){
+                console.log(error)
             }
-        }
-    })
-    const file=`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    res.send(file)
+            if(results[0].file){
+                const result=results[0]
+                let deleteFile=result.file.split('/images/')[1];
+                if(fs.existsSync(`images/${deleteFile}`)){
+                    fs.unlink(`images/${deleteFile}`,(err)=>{
+                    if (err) throw err
+                    });
+                }
+            }
+        })
+        const file=`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        res.send(file)
+    }
 }
