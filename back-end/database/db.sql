@@ -1,0 +1,93 @@
+CREATE DATABASE groupomania;
+
+USE groupomania;
+
+CREATE TABLE  users(
+   id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+
+   nom VARCHAR(100) NOT NULL,
+
+   prenom VARCHAR(100) NOT NULL,
+
+   email VARCHAR(255) NOT NULL ,
+
+   description TEXT,
+
+   imageUrl TEXT
+);
+ALTER TABLE users AUTO_INCREMENT=1;
+ALTER TABLE users ADD COLUMN password TEXT NOT NULL;
+ALTER TABLE `users` ADD `status` INT NOT NULL DEFAULT '1' AFTER `password`;
+ALTER TABLE `users` ADD `fullName` VARCHAR(100) NOT NULL AFTER `prenom`;
+
+
+
+CREATE TABLE comments(
+  id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+
+  userId INTEGER NOT NULL,
+
+  comment TEXT NOT NULL,
+
+  postId INTEGER NOT NULL 
+);
+ALTER TABLE `comments` CHANGE `id` `commentId` INT NOT NULL AUTO_INCREMENT;
+
+
+
+CREATE TABLE posts(
+   id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY
+);
+ALTER TABLE `posts` ADD `date` DATE NOT NULL AFTER `id`, 
+ADD `prenom` VARCHAR(100) NOT NULL AFTER `date`, 
+ADD `userId` INT NOT NULL AFTER `prenom`, 
+ADD `file` TEXT NOT NULL AFTER `userId`;
+ALTER TABLE `posts` ADD `imageUrl` TEXT NOT NULL AFTER `file`;
+ALTER TABLE `posts` ADD `likes` INT NOT NULL DEFAULT '0' AFTER `imageUrl`, ADD `dislikes` INT NOT NULL DEFAULT '0' AFTER `likes`;
+ALTER TABLE `posts` ADD `description` TEXT NOT NULL AFTER `file`;
+ALTER TABLE `posts` CHANGE `imageUrl` `imageUser` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL;
+ALTER TABLE `posts` CHANGE `description` `description` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL;
+ALTER TABLE `posts` CHANGE `imageUser` `imageUser` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL;
+ALTER TABLE `posts` CHANGE `file` `file` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL;
+ALTER TABLE `posts` ADD INDEX(`userId`);
+ALTER TABLE posts AUTO_INCREMENT=1;
+ALTER TABLE `posts`
+  DROP `prenom`,
+  DROP `imageUser`;
+ALTER TABLE `posts` CHANGE `id` `postId` INT NOT NULL AUTO_INCREMENT;
+ALTER TABLE `posts` CHANGE `description` `postDescription` TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL;  
+ALTER TABLE `posts` ADD `postShared` INT NULL DEFAULT NULL AFTER `postDescription`;
+ALTER TABLE `posts` CHANGE `date` `date` VARCHAR(100) NOT NULL;
+
+
+CREATE  TABLE avis(
+   id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+
+   postId INTEGER NOT NULL ,
+
+   usersLiked INTEGER NOT NULL ,
+
+   usersDisliked INTEGER NOT NULL
+);
+ALTER TABLE `avis` CHANGE `usersLiked` `usersLiked` INT NULL DEFAULT NULL, CHANGE `usersDisliked` `usersDisliked` INT NULL DEFAULT NULL;
+ALTER TABLE `avis` ADD `userId` INT NOT NULL AFTER `usersDisliked`;
+ALTER TABLE `avis` CHANGE `userId` `avisUserId` INT NOT NULL;
+ALTER TABLE `avis` CHANGE `postId` `avisPostId` INT NOT NULL;
+
+
+
+CREATE TABLE notifications(
+  id  INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
+
+  postUserId INTEGER NOT NULL,
+
+  theOneWoReactId INTEGER NOT NULL,
+   
+  status  VARCHAR(6) NOT NULL DEFAULT 'unseen',
+
+  form TEXT NOT NULL ,
+
+  postId  INTEGER NOT NULL
+
+);
+ALTER TABLE `notifications` CHANGE `id` `notifId` INT NOT NULL AUTO_INCREMENT;
