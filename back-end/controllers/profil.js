@@ -64,7 +64,7 @@ exports.deleteUser=async(req,res,next)=>{
     if(error){
         console.log(error)
     }
-    if(results){
+    if(results[0]){
         const result=results[0]
         let deleteFile=result.imageUrl.split('/images/')[1];
         if(fs.existsSync(`images/${deleteFile}`)){
