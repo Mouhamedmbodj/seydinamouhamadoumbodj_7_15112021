@@ -62,7 +62,6 @@ exports.modifyPost=(req,res,next)=>{
        postDescription:req.body.description,
        file:req.body.file
     }  
-    console.log(req.body)
     
     db.query('UPDATE posts SET ? WHERE postId=?',[data,postId],(error , results)=>{
         if(error){
