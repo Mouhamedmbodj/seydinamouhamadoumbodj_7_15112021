@@ -19,7 +19,7 @@
  DATABASE=groupomania
  PASSWORD='mot de passe'
  
-###dans le dossier database 
+### dans le dossier database 
 - copiez toute les  requêtes dans le fichier (db.sql) exécuter les dans votre terminal mysql ou sur phpMyAdmin
 - copiez les deux requêtes dans le fichier (userDefault.sql) exécuter les dans votre terminal mysql ou sur phpMyAdmin pour initialiser le compte admin et le compte utilisateur les mots de passe pour chaque compte sera afficher dans ce fichier
 - enfin taper la commande (nodemon server) sur votre terminal
