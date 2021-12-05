@@ -6,7 +6,7 @@ exports.createComment=(req,res,next)=>{
         if(error){
             console.log(error)
         }else{
-            res.send({Message:'commentaire créer'})
+            res.send({Message:'commentaire ajouter'})
         }
     })
 }
@@ -33,7 +33,7 @@ exports.modifyComment=(req,res,next)=>{
           console.log(error)
         }
         if(results){
-           res.send({Message:'commentaire mis á jour'})
+           res.send({Message:'commentaire modifier'})
         }
     })
 }

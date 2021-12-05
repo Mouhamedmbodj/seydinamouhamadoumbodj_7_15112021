@@ -15,10 +15,10 @@ exports.createPost=(req, res ,next)=>{
         if(error){
             console.log(error)
         }else{
-            res.send({Message:'Post créer'})
+            res.send({Message:'Post ajouter'})
         }
     })
-      
+    
 }
 
 //recuperer toot les posts
@@ -68,10 +68,10 @@ exports.modifyPost=(req,res,next)=>{
           console.log(error)
         }
         if(results.length > 0){
-           res.send({Message:'Post mis á jour'})
+           res.send({Message:'Post modifier'})
         }
     })
-    res.send({Message:'Post mis á jour'})
+    res.send({Message:'Post modifier'})
     
 }
 

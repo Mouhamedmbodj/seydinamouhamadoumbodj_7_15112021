@@ -17,7 +17,7 @@ exports.ifComment=(req,res,next)=>{
                 if(error){
                     console.log(error)
                 }else{
-                    res.send({Message:'Post créer'})
+                    res.send({Message:'Post ajouter'})
                 }
             })
         }
@@ -41,7 +41,7 @@ exports.ifLike=(req,res,next)=>{
                 if(error){
                     console.log(error)
                 }else{
-                    res.send({Message:'Post créer'})
+                    res.send({Message:'Post ajouter'})
                 }
             })
         }

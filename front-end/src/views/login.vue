@@ -4,9 +4,6 @@
             <img src="../assets/image/icon-above-font.png" alt="">
         </div>
         <form action="" class="m-auto col-md-4 col-10 mt-3">
-            <div class="col-12 text-center mb-3 border-bottom">
-                <h1 class="title"><strong>Connectez vous á Groupomania</strong> </h1>
-            </div>
             <div class="mb-3">
                 <input type="email" id="email" class="form-control" placeholder="Email" v-model="email">
             </div>
@@ -15,7 +12,7 @@
                 <small class="text-danger"></small>
             </div>
             <div class="col-12 text-center">
-                <button class="text-center btn btn-outline-success form-button m-auto" @click.prevent="valid">Entrer</button>
+                <button class="text-center btn btn-outline-success form-button m-auto" @click.prevent="valid">Se connecter</button>
             </div>
             <div class="col-12 text-center mt-3"><p class="text-danger"><strong id="error"></strong></p></div> 
 
@@ -110,10 +107,6 @@ form{
     border: 1px solid white;
     border-radius: 8px;
     padding:10px;
-}
-
-.title{
-   font-size:1em
 }
 
 .subtitle{

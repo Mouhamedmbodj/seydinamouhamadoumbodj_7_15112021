@@ -27,7 +27,7 @@ exports.createUser=async(req ,res ,next)=>{
                 if(error){
                     console.log(error)
                 }else{
-                    res.send({Message:'utilisateur créer'})
+                    res.send({Message:'utilisateur ajouter'})
                 }
             }) 
         }

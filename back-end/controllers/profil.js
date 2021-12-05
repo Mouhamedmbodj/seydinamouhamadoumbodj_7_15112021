@@ -17,10 +17,10 @@ exports.modifyProfil=(req,res,next)=>{
           console.log(error)
         }
         if(results.length > 0){
-           res.send({Message:'Profil mis á jour'})
+           res.send({Message:'Profil modifier'})
         }
     })
-    res.send({Message:'Profil mis á jour'})
+    res.send({Message:'Profil modifier'})
 }
 
 //changer le mot de passe
@@ -48,7 +48,7 @@ exports.changePassword=async (req,res,next)=>{
               console.log(error)
             }
             if(results){
-               res.send({Message:'Mot de passe mis á jour'})
+               res.send({Message:'Mot de passe modifier'})
             }
           })
 
