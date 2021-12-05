@@ -52,7 +52,7 @@ export default{
 
            //verifier le mot de passe de l'utilisateur
            //eslint-disable-next-line
-           let passwordRegexp='^[a-zA-Z0-9]{8,32}$';
+           let passwordRegexp='^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})';
            let passwordRegexpValue=new RegExp(passwordRegexp)
            let testPassword=passwordRegexpValue.test(this.password);
            if(testPassword){
@@ -62,7 +62,7 @@ export default{
                document.querySelector('#password').classList.add('is-invalid')
                document.querySelector('#password').classList.remove('is-valid')
                let small=document.querySelector('#password').nextElementSibling
-               small.textContent='Le mot de passe doit contenir au minimum 8 caractéres contenant au minimum une lettre'
+               small.textContent='Le mot de passe doit contenir au minimum 8 caractéres contenant au minimum une lettre et un caractère spécial'
            } 
 
            //envoyer les données si l'email et le mot de passe sont valide
