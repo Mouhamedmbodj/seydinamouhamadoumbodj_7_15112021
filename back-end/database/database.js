@@ -19,9 +19,15 @@ db.getConnection((err , connection)=>{
         }
     }
 
-    if(connection)connection.release();
+    if(connection) connection.release();
+        
     console.log('Db is Connected');
-    return;
+    return;  
+    
+    
+   
+      
+   
     
 })
 //promissify db query
